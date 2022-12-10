@@ -1,0 +1,25 @@
+{
+  "name": "shortlify",
+  "version": "1.0.0",
+  "description": "The app that creates short links.",
+  "main": "./backend/app.js",
+  "scripts": {},
+  "keywords": [
+    "MERN",
+    "Mongo",
+    "Exprees",
+    "React",
+    "Node"
+  ],
+  "author": "Oleksii Dvornik <alexey.dvornik@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
+}
