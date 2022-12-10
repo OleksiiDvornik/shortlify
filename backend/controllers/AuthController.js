@@ -2,7 +2,9 @@ const User = require('../models/UserModel');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const jwtSecret = require('../config/secrets');
+const secrets = require('../config/secrets');
+
+const jwtSecret = secrets.jwtSecret;
 
 const generateAccessToken = (id) => {
     const payload = {
@@ -43,6 +45,26 @@ class AuthController {
         try {
             const errors = validationResult(req);
 
+            if (!errors.isEmpty()) {
+                return res.status(400).json({errors: errors.array(), message: 'Sign up error'});
+            }
+
+            const {email, password} = req.body;
+            const user = await User.findOne({email});
+
+            if (!user) {
+                return res.status(400).json({message: 'User is not found'});
+            }
+
+            const isPasswordMatch = bcrypt.compareSync(password, user.password);
+
+            if (!isPasswordMatch) {
+                return res.status(400).json({message: 'Invalid password'});
+            }
+
+            const token = generateAccessToken(user.id);
+
+            return res.json({token, userId: user.id});
         } catch (err) {
             console.log(err.message);
         }
@@ -50,9 +72,12 @@ class AuthController {
 
     async getUser (req, res) {
         try {
-
+            const user = await User.findOne({id: req.user.id})
+            const token = generateAccessToken(user.id);
+            return res.json({token, userId: user.id});
         } catch (err) {
             console.log(err.message);
+            res.status(401).json({message: 'Auth error'});
         }
     }
 
