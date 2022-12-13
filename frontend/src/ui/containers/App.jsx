@@ -16,7 +16,7 @@ const App = () => {
     return (
         <Router>
             <ThemeProvider theme={theme}>
-                <Header />
+                <Header isLoggedIn={false} />
                 <main className='main'>
                     {routes}
                 </main>

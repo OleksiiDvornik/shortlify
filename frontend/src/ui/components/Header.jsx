@@ -8,7 +8,8 @@ import { AppBar, Toolbar, Container, Typography, Box, Button } from '@mui/materi
 // Helpers
 import {palette} from '../../engine/config/theme';
 
-const Header = function () {
+const Header = function (props) {
+    const { isLoggedIn } = props;
     const { home } = routes;
 
     return (
@@ -35,7 +36,7 @@ const Header = function () {
                         Shortlify
                     </Typography>
                     <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        <Box mr={2}>
+                        {!isLoggedIn && <Box mr={2}>
                             <Button
                                 component={NavLink}
                                 to={home}
@@ -45,21 +46,31 @@ const Header = function () {
                                     fontSize: '1rem'
                                 }}
                             >
-                                Sign In
+                                Log in
                             </Button>
-                        </Box>
-                        <Button
+                        </Box>}
+                        {!isLoggedIn && <Button
                             component={NavLink}
                             to={home}
                             variant='outlined'
-                            color='warning'
                             sx={{
                                 textTransform: 'none',
                                 fontSize: '1rem'
                             }}
                         >
-                            Sign Up
-                        </Button>
+                            Sign up Free
+                        </Button>}
+                        {isLoggedIn && <Button
+                            component={NavLink}
+                            to={home}
+                            variant='text'
+                            sx={{
+                                textTransform: 'none',
+                                fontSize: '1rem'
+                            }}
+                        >
+                            Sign out
+                        </Button>}
                     </Box>
                 </Container>
             </Toolbar>
