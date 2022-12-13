@@ -3,7 +3,7 @@ import { routes } from '../../engine/config/routes';
 import { NavLink } from 'react-router-dom';
 
 // Parts
-import { AppBar, Toolbar, Container, Typography, Box, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
 
 // Helpers
 import {palette} from '../../engine/config/theme';
@@ -14,53 +14,31 @@ const Header = function (props) {
 
     return (
         <AppBar position='static' color='transparent' sx={{boxShadow: 'none'}}>
-            <Toolbar>
-                <Container
-                    maxWidth='lg'
+            <Toolbar sx={{
+                width: '100%',
+                maxWidth: 1200,
+                height: 100,
+                margin: '0 auto',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            }}>
+                <Typography
+                    component={NavLink}
+                    to={home}
+                    variant='h5'
                     sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                }}>
-                    <Typography
-                        component={NavLink}
-                        to={home}
-                        variant='h5'
-                        sx={{
-                            textDecoration: 'none',
-                            fontWeight: 'bold',
-                            color: palette.hover,
-                            lineHeight: 1
-                        }}
-                    >
-                        Shortlify
-                    </Typography>
-                    <Box sx={{display: 'flex', alignItems: 'center'}}>
-                        {!isLoggedIn && <Box mr={2}>
-                            <Button
-                                component={NavLink}
-                                to={home}
-                                variant='text'
-                                sx={{
-                                    textTransform: 'none',
-                                    fontSize: '1rem'
-                                }}
-                            >
-                                Log in
-                            </Button>
-                        </Box>}
-                        {!isLoggedIn && <Button
-                            component={NavLink}
-                            to={home}
-                            variant='outlined'
-                            sx={{
-                                textTransform: 'none',
-                                fontSize: '1rem'
-                            }}
-                        >
-                            Sign up Free
-                        </Button>}
-                        {isLoggedIn && <Button
+                        textDecoration: 'none',
+                        fontWeight: 'bold',
+                        color: palette.hover,
+                        lineHeight: 1
+                    }}
+                >
+                    Shortlify
+                </Typography>
+                <Box sx={{display: 'flex', alignItems: 'center'}}>
+                    {!isLoggedIn && <Box mr={2}>
+                        <Button
                             component={NavLink}
                             to={home}
                             variant='text'
@@ -69,10 +47,32 @@ const Header = function (props) {
                                 fontSize: '1rem'
                             }}
                         >
-                            Sign out
-                        </Button>}
-                    </Box>
-                </Container>
+                            Log in
+                        </Button>
+                    </Box>}
+                    {!isLoggedIn && <Button
+                        component={NavLink}
+                        to={home}
+                        variant='outlined'
+                        sx={{
+                            textTransform: 'none',
+                            fontSize: '1rem'
+                        }}
+                    >
+                        Sign up Free
+                    </Button>}
+                    {isLoggedIn && <Button
+                        component={NavLink}
+                        to={home}
+                        variant='text'
+                        sx={{
+                            textTransform: 'none',
+                            fontSize: '1rem'
+                        }}
+                    >
+                        Sign out
+                    </Button>}
+                </Box>
             </Toolbar>
         </AppBar>
     )
