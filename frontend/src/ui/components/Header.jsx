@@ -10,7 +10,7 @@ import {palette} from '../../engine/config/theme';
 
 const Header = function (props) {
     const { isLoggedIn } = props;
-    const { home } = routes;
+    const { home, signUp, signIn } = routes;
 
     return (
         <AppBar position='static' color='transparent' sx={{boxShadow: 'none'}}>
@@ -40,7 +40,7 @@ const Header = function (props) {
                     {!isLoggedIn && <Box mr={2}>
                         <Button
                             component={NavLink}
-                            to={home}
+                            to={signIn}
                             variant='text'
                             sx={{
                                 textTransform: 'none',
@@ -52,7 +52,7 @@ const Header = function (props) {
                     </Box>}
                     {!isLoggedIn && <Button
                         component={NavLink}
-                        to={home}
+                        to={signUp}
                         variant='outlined'
                         sx={{
                             textTransform: 'none',

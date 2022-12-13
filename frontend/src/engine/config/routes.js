@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 
 // Pages
 import Home from '../../ui/pages/Home';
+import SignUp from '../../ui/pages/SignUp';
+import SignIn from '../../ui/pages/SignIn';
 
 export const routes = {
     home: '/',
@@ -31,14 +33,14 @@ export const RoutesList = {
             path: routes.home,
             component: <Home/>
         },
-        // {
-        //     path: routes.signIn,
-        //     component: <SignIn/>
-        // },
-        // {
-        //     path: routes.signUp,
-        //     component: <SignUp/>
-        // },
+        {
+            path: routes.signIn,
+            component: <SignIn/>
+        },
+        {
+            path: routes.signUp,
+            component: <SignUp/>
+        },
         // {
         //     path: routes.notFound,
         //     component: <NotFound/>

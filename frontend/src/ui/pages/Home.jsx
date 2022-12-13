@@ -9,7 +9,7 @@ import { Container, Grid, Box, Typography, Button } from '@mui/material';
 import cover from '../_helpers/assets/img/home-cover.svg';
 
 const Home = function () {
-    const { home } = routes;
+    const { home, signUp } = routes;
 
     return (
         <Container maxWidth='lg'>
@@ -39,7 +39,7 @@ const Home = function () {
                             size='large'
                             sx={{textTransform: 'none'}}
                             component={NavLink}
-                            to={home}
+                            to={signUp}
                         >Get Started for Free</Button>
                     </Box>
                 </Grid>
@@ -48,7 +48,8 @@ const Home = function () {
                         component='img'
                         sx={{
                             display: 'block',
-                            width: '520px',
+                            width: '100%',
+                            maxWidth: '520px',
                             marginLeft: 'auto'
                         }}
                         src={cover}
