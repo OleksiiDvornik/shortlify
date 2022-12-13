@@ -26,7 +26,7 @@ class AuthController {
             const candidate = await User.findOne({email});
 
             if (candidate) {
-                return res.status(400).json({message: 'User already exists'});
+                return res.status(400).json({message: 'user already exists'});
             }
 
             const hashPassword = bcrypt.hashSync(password, 7);
@@ -34,7 +34,7 @@ class AuthController {
 
             await user.save();
 
-            return res.status(201).json({message: 'User has been successfully created'});
+            return res.status(201).json({message: 'user has been successfully created'});
         } catch (err) {
             console.log(err.message);
             res.status(500).json({message: 'Sign up error'});
@@ -53,7 +53,7 @@ class AuthController {
             const user = await User.findOne({email});
 
             if (!user) {
-                return res.status(400).json({message: 'User is not found'});
+                return res.status(400).json({message: 'user is not found'});
             }
 
             const isPasswordMatch = bcrypt.compareSync(password, user.password);
