@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
 
 // Helpers
-import {palette} from '../../engine/config/theme';
+import { palette } from '../../engine/config/theme';
 
 const Header = function (props) {
     const { isLoggedIn } = props;

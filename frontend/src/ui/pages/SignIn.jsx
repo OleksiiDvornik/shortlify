@@ -23,6 +23,9 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+// Helpers
+import { palette } from '../../engine/config/theme';
+
 const schema = yup.object().shape({
     email: yup
         .string()
@@ -78,7 +81,7 @@ const SignIn = function () {
                     <Typography
                         component={NavLink}
                         to={signUp}
-                        sx={{marginLeft: '4px', textDecoration: 'none'}}
+                        sx={{marginLeft: '4px', textDecoration: 'none', color: palette.accent}}
                     >
                         Sign Up
                     </Typography>
@@ -125,7 +128,7 @@ const SignIn = function () {
                     <FormHelperText id='password' sx={{margin: '-12px 0 8px', color: 'red'}}>
                         {errors?.password?.message}
                     </FormHelperText>
-                    <Button type='submit' variant='contained' size='large'>Sign up with Email</Button>
+                    <Button type='submit' variant='contained' size='large'>Log in</Button>
                 </Box>
             </Container>
         </Box>

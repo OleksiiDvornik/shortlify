@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Home from '../../ui/pages/Home';
 import SignUp from '../../ui/pages/SignUp';
 import SignIn from '../../ui/pages/SignIn';
+import NotFound from '../../ui/pages/NotFound';
 
 export const routes = {
     home: '/',
@@ -19,14 +20,14 @@ export const RoutesList = {
         //     path: routes.home,
         //     component: <Dashboard/>
         // },
-        // {
-        //     path: routes.notFound,
-        //     component: <NotFound/>
-        // },
-        // {
-        //     path: `${routes.home}*`,
-        //     component: <Navigate replace to={routes.notFound} />
-        // }
+        {
+            path: routes.notFound,
+            component: <NotFound/>
+        },
+        {
+            path: `${routes.home}*`,
+            component: <Navigate replace to={routes.notFound} />
+        }
     ],
     loggedOut: [
         {
@@ -41,10 +42,10 @@ export const RoutesList = {
             path: routes.signUp,
             component: <SignUp/>
         },
-        // {
-        //     path: routes.notFound,
-        //     component: <NotFound/>
-        // },
+        {
+            path: routes.notFound,
+            component: <NotFound/>
+        },
         {
             path: `${routes.home}*`,
             component: <Navigate replace to={routes.notFound} />
