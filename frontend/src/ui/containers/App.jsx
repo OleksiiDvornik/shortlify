@@ -11,12 +11,12 @@ import { useRoutes } from '../_helpers/hooks/useRoute';
 import { theme } from '../../engine/config/theme';
 
 const App = () => {
-    const routes = useRoutes(false);
+    const routes = useRoutes(true);
 
     return (
         <Router>
             <ThemeProvider theme={theme}>
-                <Header isLoggedIn={false} />
+                <Header isLoggedIn={true} />
                 <main className='main'>
                     {routes}
                 </main>

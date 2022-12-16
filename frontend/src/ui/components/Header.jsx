@@ -62,8 +62,6 @@ const Header = function (props) {
                         Sign up Free
                     </Button>}
                     {isLoggedIn && <Button
-                        component={NavLink}
-                        to={home}
                         variant='text'
                         sx={{
                             textTransform: 'none',

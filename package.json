@@ -4,7 +4,9 @@
   "description": "The app that creates short links.",
   "main": "backend/app.js",
   "scripts": {
-    "server": "nodemon backend/app.js"
+    "server": "nodemon backend/app.js",
+    "client": "npm run start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
     "MERN",

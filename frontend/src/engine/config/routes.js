@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import Home from '../../ui/pages/Home';
 import SignUp from '../../ui/pages/SignUp';
 import SignIn from '../../ui/pages/SignIn';
+import Dashboard from '../../ui/pages/Dashboard';
 import NotFound from '../../ui/pages/NotFound';
 
 export const routes = {
@@ -16,10 +17,10 @@ export const routes = {
 
 export const RoutesList = {
     loggedIn: [
-        // {
-        //     path: routes.home,
-        //     component: <Dashboard/>
-        // },
+        {
+            path: routes.home,
+            component: <Dashboard/>
+        },
         {
             path: routes.notFound,
             component: <NotFound/>
