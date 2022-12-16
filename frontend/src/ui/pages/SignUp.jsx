@@ -7,6 +7,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 
+// Engine
+import { createUser } from '../../engine/core/user/actions';
+
 // Parts
 import {
     Container,
@@ -51,10 +54,10 @@ const SignUp = function () {
         setShowPassword(!showPassword);
     };
 
-    const onSubmit = (data) => {
-        console.log(data)
-        navigate(signIn)
-    }
+    const onSubmit = async (data) => {
+        await createUser(data);
+        navigate(signIn);
+    };
 
     return (
         <Box
@@ -111,6 +114,7 @@ const SignUp = function () {
                     <TextField
                         type={showPassword ? 'text' : 'password'}
                         id='password'
+                        autoComplete='on'
                         sx={{marginBottom: 2}}
                         {...register('password')}
                         InputProps={{

@@ -5,7 +5,11 @@ import { NavLink } from 'react-router-dom';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+
+// Engine
+import { logIn } from '../../engine/core/user/actions';
 
 // Parts
 import {
@@ -41,7 +45,8 @@ const schema = yup.object().shape({
 const SignIn = function () {
     const [showPassword, setShowPassword] = useState(false);
     const { home, signUp } = routes;
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors }} = useForm({
         mode: 'onBlur',
@@ -54,9 +59,8 @@ const SignIn = function () {
         setShowPassword(!showPassword);
     };
 
-    const onSubmit = (data) => {
-        console.log(data)
-        // await createUser(data);
+    const onSubmit = async (data) => {
+        await dispatch(logIn(data));
         navigate(home);
     }
 
@@ -111,6 +115,7 @@ const SignIn = function () {
                     <TextField
                         type={showPassword ? 'text' : 'password'}
                         id='password'
+                        autoComplete='on'
                         sx={{marginBottom: 2}}
                         {...register('password')}
                         InputProps={{

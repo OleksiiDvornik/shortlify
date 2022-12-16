@@ -1,6 +1,11 @@
 // Core
 import { routes } from '../../engine/config/routes';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+// Engine
+import { logOut } from '../../engine/core/user/actions';
 
 // Parts
 import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
@@ -11,6 +16,13 @@ import { palette } from '../../engine/config/theme';
 const Header = function (props) {
     const { isLoggedIn } = props;
     const { home, signUp, signIn } = routes;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const signOutHandler = () => {
+        dispatch(logOut());
+        navigate(home);
+    }
 
     return (
         <AppBar position='static' color='transparent' sx={{boxShadow: 'none'}}>
@@ -63,6 +75,7 @@ const Header = function (props) {
                     </Button>}
                     {isLoggedIn && <Button
                         variant='text'
+                        onClick={signOutHandler}
                         sx={{
                             textTransform: 'none',
                             fontSize: '1rem'

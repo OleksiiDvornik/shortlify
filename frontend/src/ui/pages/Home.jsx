@@ -9,7 +9,7 @@ import { Container, Grid, Box, Typography, Button } from '@mui/material';
 import cover from '../_helpers/assets/img/home-cover.svg';
 
 const Home = function () {
-    const { home, signUp } = routes;
+    const { signUp } = routes;
 
     return (
         <Container maxWidth='lg'>
