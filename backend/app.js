@@ -14,8 +14,8 @@ app.use(corsMiddleware);
 app.use(express.json());
 
 // Routes
-
 app.use('/api/auth', require('./routes/AuthRouter'));
+app.use('/api/links', require('./routes/LinksRouter'));
 
 const start = async () => {
     try {

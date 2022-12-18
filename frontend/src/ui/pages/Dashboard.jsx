@@ -1,6 +1,11 @@
 // Core
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+
+//Engine
+import { getLinks, createLink } from '../../engine/core/user/actions';
+import { selectors } from '../../engine/core/user/selectors';
 
 // Parts
 import {
@@ -20,6 +25,9 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Dashboard = function () {
     const [inputShow, setInputShow] = useState(false);
+    const links = useSelector(selectors.links);
+    const dispatch = useDispatch();
+
     const { register, handleSubmit, resetField } = useForm({
         mode: 'onBlur',
         defaultValues: {
@@ -27,8 +35,18 @@ const Dashboard = function () {
         }
     });
 
+    useEffect(() => {
+        dispatch(getLinks())
+    }, [dispatch])
+
     const inputHandler = () => {
         setInputShow(true);
+    }
+
+    const onSubmit = async (data) => {
+        dispatch(createLink({from: data.link}, links));
+        resetField('link');
+        setInputShow(false);
     }
 
     return (
@@ -63,7 +81,7 @@ const Dashboard = function () {
                         </Button>
                     </Grid>
                     <Grid item md={12}>
-                        <Box component='form'>
+                        <Box component='form' onSubmit={handleSubmit(onSubmit)}>
                             {inputShow && <TextField
                                 type='text'
                                 fullWidth
@@ -76,10 +94,11 @@ const Dashboard = function () {
                                 {...register('link')}
                                 InputProps={{
                                     endAdornment:
-                                        <InputAdornment position="end">
+                                        <InputAdornment position='end'>
                                             <IconButton
                                                 onClick={inputHandler}
-                                                edge="end"
+                                                edge='end'
+                                                type='submit'
                                             >
                                                 <AddIcon />
                                             </IconButton>
@@ -91,7 +110,12 @@ const Dashboard = function () {
                     </Grid>
                 </Grid>
                 <Grid container>
-
+                    {links.length !== 0
+                        ? links.map((link) => (
+                            <Card data={link} key={link._id} />
+                        ))
+                        : <Typography component='span' sx={{marginTop: 2}}>There are no links</Typography>
+                    }
                 </Grid>
             </Container>
         </Box>
