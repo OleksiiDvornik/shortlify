@@ -4,6 +4,7 @@
   "description": "The app that creates short links.",
   "main": "backend/app.js",
   "scripts": {
+    "start": "node backend/app.js",
     "server": "nodemon backend/app.js",
     "client": "npm run start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -23,7 +24,8 @@
     "express": "^4.18.2",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.8.0"
+    "mongoose": "^6.8.0",
+    "nanoid": "^3.3.4"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",

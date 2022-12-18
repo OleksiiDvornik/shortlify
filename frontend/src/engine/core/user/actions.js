@@ -47,3 +47,48 @@ export const logOut = () => (dispatch) => {
     dispatch(setIsLoggedIn(false));
     localStorage.removeItem('token');
 }
+
+// Links API
+export const getLinks = () => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await api.getLinks({
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        dispatch(setLinks(response.data));
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+export const createLink = (newLink, links) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await api.addLink(newLink, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const newLinks = [...links, response.data];
+        dispatch(setLinks(newLinks));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const deleteLink = (links, id) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token');
+        const newLinks = links.filter(link => link._id !== id);
+        await api.deleteLink(id, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        dispatch(setLinks(newLinks));
+    } catch (err) {
+        console.log(err.message);
+    }
+}

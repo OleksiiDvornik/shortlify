@@ -14,5 +14,14 @@ export const api = Object.freeze({
     },
     getUser(options) {
         return instance.get('/api/auth/auth', options);
+    },
+    getLinks(options) {
+        return instance.get('/api/links/', options);
+    },
+    addLink(link, options) {
+        return instance.post('/api/links/generate', link, options)
+    },
+    deleteLink(id, options) {
+        return instance.delete(`/api/links/delete/${id}`, options)
     }
 })
