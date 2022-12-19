@@ -37,7 +37,7 @@ const Home = function () {
                         <Button
                             variant='contained'
                             size='large'
-                            sx={{textTransform: 'none'}}
+                            sx={{textTransform: 'none', marginBottom: 5}}
                             component={NavLink}
                             to={signUp}
                         >Get Started for Free</Button>
@@ -50,7 +50,8 @@ const Home = function () {
                             display: 'block',
                             width: '100%',
                             maxWidth: '520px',
-                            marginLeft: 'auto'
+                            marginLeft: 'auto',
+                            marginBottom: 5
                         }}
                         src={cover}
                         alt='Homepage cover image'

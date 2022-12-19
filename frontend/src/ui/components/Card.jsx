@@ -20,7 +20,7 @@ const Card = function (props) {
     return (
         <Grid
             item
-            md={12}
+            xs={12}
             sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -30,9 +30,11 @@ const Card = function (props) {
                 borderRadius: '8px',
             }}
         >
-            <Box sx={{
-
-            }}>
+            <Box
+                sx={{
+                    overflowX: 'auto',
+                }}
+            >
                 <Typography component='p' marginBottom={1}><b>From:</b> {data.from}</Typography>
                 <Typography component='p' marginBottom={1}>
                     <b>To:</b> <a href={data.to} target='_blanck' rel='noopener noreferrer'>{data.to}</a>

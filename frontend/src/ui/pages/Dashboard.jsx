@@ -63,11 +63,11 @@ const Dashboard = function () {
                     container
                     sx={{alignItems: 'center'}}
                 >
-                    <Grid item md={10}>
+                    <Grid item xs={6}>
                         <Typography variant='h4'>Your Links</Typography>
                     </Grid>
                     <Grid
-                        item md={2}
+                        item xs={6}
                         sx={{
                             display: 'flex',
                             justifyContent: 'flex-end'
@@ -80,7 +80,7 @@ const Dashboard = function () {
                             Create link
                         </Button>
                     </Grid>
-                    <Grid item md={12}>
+                    <Grid item xs={12}>
                         <Box component='form' onSubmit={handleSubmit(onSubmit)}>
                             {inputShow && <TextField
                                 type='text'
